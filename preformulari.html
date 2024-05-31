@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>Registre de professorat</title>
+    <style>
+        body {
+            margin: 0;
+            background: url('https://i.ibb.co/ncPqFV6/logo-institut-sapalomera.png') repeat;
+            background-size: auto;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 90%;
+            width: 400px;
+            overflow: hidden;
+            margin: 20px auto;
+        }
+        .container form {
+            margin-top: auto;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="submit"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        h2 {
+            font-size: 1.2em;
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-top: 20px;
+        }
+        input[type="submit"] {
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: navy;
+        }
+        @media only screen and (max-width: 600px) {
+            .container {
+                max-width: 100%;
+            }
+            input[type="text"],
+            input[type="email"],
+            input[type="submit"] {
+                width: calc(100% - 20px);
+            }
+        }
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: -1;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Registre de professorat</h2>
+        <form action="preformulari.php" method="POST">
+            <input type="text" id="nom" name="nom" required placeholder="Nom*">
+            <input type="text" id="cognom1" name="cognom1" placeholder="1r Cognom*" required>
+            <input type="text" id="cognom2" name="cognom2" placeholder="2n Cognom*">
+            <input type="text" id="telefono" name="telefono" placeholder="Telèfon*" required>
+            <input type="email" id="correo" name="correo" placeholder="Correu*" required>
+            <input type="submit" value="Registrar">
+        </form>
+    </div>
+</body>
+</html>

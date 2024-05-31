@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>Alta professorat</title>
+    <style>
+        body {
+            margin: 0;
+            background: url('https://i.ibb.co/ncPqFV6/logo-institut-sapalomera.png') repeat;
+            background-size: auto;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 90%;
+            width: 400px;
+            overflow: hidden;
+            margin: 20px auto;
+        }
+        .container form {
+            margin-top: auto;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="file"],
+        input[type="submit"],
+        input[type="date"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        select {
+            width: calc(50% - 10px);
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        h2 {
+            font-size: 1.2em;
+        }
+        h3 {
+            font-size: 1em;
+        }
+        #foto_label,
+        #email_label,
+        #telefon_label {
+            display: block;
+            margin-top: 20px;
+        }
+        option.default-option {
+            display: none;
+        }
+        @media only screen and (max-width: 600px) {
+            .container {
+                max-width: 100%;
+            }
+            input[type="text"],
+            input[type="email"],
+            input[type="tel"],
+            input[type="file"],
+            input[type="submit"] {
+                width: calc(100% - 20px);
+            }
+            select {
+                width: calc(100% - 20px);
+            }
+        }
+        .select-container {
+            display: flex;
+        }
+        .select-container select {
+            margin-right: 10px;
+        }
+        input[type="submit"] {
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: navy;
+        }
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: -1;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Alta professorat</h1>
+        <form action="http://127.0.0.1/formulari.php" method="POST" enctype="multipart/form-data">
+            <input type="text" id="codi_validacio" name="codi_validacio" value="" placeholder="Codi Validaci&#243;. (El tens a l'email on era l'enlla&#231; a aquest formulari)" required>
+            <h2>Dades personals</h2>
+            <input type="text" id="dni" name="dni" value="" placeholder="DNI*" required pattern="^[0-9]{8}[A-Za-z]$">
+            <input type="text" id="nom" name="nom" value="" placeholder="Nom*" required>
+            <input type="text" id="primer_cognom" name="primer_cognom" value="" placeholder="1r Cognom*" required>
+            <input type="text" id="segon_cognom" name="segon_cognom" value="" placeholder="2n Cognom">
+            <input type="date" id="data_naixement" name="data_naixement" value="" placeholder="Data Naixement">
+            <label id="foto_label" for="foto">FOTO*. A poder ser de tipus carnet:</label>
+            <input type="file" id="foto" name="foto" accept="image/png, image/jpeg, image/jpg" value="Seleccionar arxiu">
+            <h2>Dades de contacte</h2>
+            <input type="email" id="email" name="email" value="" placeholder="Email*" required>
+            <input type="tel" id="telefon" name="telefon" value="" placeholder="Telèfon*" required>
+            <h2>Dades Acadèmiques</h2>
+            <h3>Títol 1</h3>
+            <div class="select-container">
+                <select id="tipus_estudis" name="tipus_estudis">
+                    <option class="default-option" selected disabled>Tipus d'Estudis</option>
+                    <option value="grau">Grau</option>
+                    <option value="màster">Màster</option>
+                    <option value="doctorat">Doctorat</option>
+                </select>
+                <select id="nom_estudis" name="nom_estudis" onchange="checkOther(this)">
+                    <option class="default-option" selected disabled>Nom dels Estudis</option>
+                    <option value="enginyeria_informatica">Enginyeria Informàtica</option>
+                    <option value="biologia">Biologia</option>
+                    <option value="matematiques">Matemàtiques</option>
+                    <option value="altres">Altres</option>
+                </select>
+                <input type="text" id="nom_estudis_altres" name="nom_estudis_altres" placeholder="Especifiqueu altres estudis" style="display:none;">
+            </div>
+            <h3>Títol 2</h3>
+            <div class="select-container">
+                <select id="tipus_estudis2" name="tipus_estudis2">
+                    <option class="default-option" selected disabled>Tipus d'Estudis</option>
+                    <option value="grau">Grau</option>
+                    <option value="màster">Màster</option>
+                    <option value="doctorat">Doctorat</option>
+                </select>
+                <select id="nom_estudis2" name="nom_estudis2" onchange="checkOther(this)">
+                    <option class="default-option" selected disabled>Nom dels Estudis</option>
+                    <option value="enginyeria_informatica">Enginyeria Informàtica</option>
+                    <option value="biologia">Biologia</option>
+                    <option value="matematiques">Matemàtiques</option>
+                    <option value="altres">Altres</option>
+                </select>
+                <input type="text" id="nom_estudis2_altres" name="nom_estudis2_altres" placeholder="Especifiqueu altres estudis" style="display:none;">
+            </div>
+            <input type="checkbox" id="acord_privacitat" name="acord_privacitat" required>
+            <label for="acord_privacitat">Estic d'acord amb <a href="http://localhost/privacitat.html" target="_blank">l'acord de privacitat</a></label>
+            <input type="submit" value="Enviar">
+        </form>
+    </div>
+    <script>
+        function checkOther(selectElement) {
+            if (selectElement.value === "altres") {
+                if (selectElement.id === "nom_estudis") {
+                    document.getElementById("nom_estudis_altres").style.display = "block";
+                } else if (selectElement.id === "nom_estudis2") {
+                    document.getElementById("nom_estudis2_altres").style.display = "block";
+                }
+            } else {
+                if (selectElement.id === "nom_estudis") {
+                    document.getElementById("nom_estudis_altres").style.display = "none";
+                } else if (selectElement.id === "nom_estudis2") {
+                    document.getElementById("nom_estudis2_altres").style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
